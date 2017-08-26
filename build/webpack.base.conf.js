@@ -23,7 +23,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.styl'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
     }
   },
   module: {
@@ -45,11 +45,22 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test')],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-html-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader!',
+        exclude: /node_modules/,
       },
       {
         test: /\.styl$/,
-        loader: 'style-loader!css-loader!stylus-loader'
+        loader: 'style-loader!css-loader!stylus-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
